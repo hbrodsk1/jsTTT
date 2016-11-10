@@ -1,0 +1,60 @@
+.container {
+	position: relative;
+	top: 30px;
+	text-align: center;
+}
+
+#heading {
+	position: relative;
+	text-align: center;
+	height: 74px;
+}
+
+.winner {
+	position: relative;
+	text-align: center;
+}
+
+#gameboard {
+	position: relative;
+	top: 30px;
+	margin: auto;
+	width: 300px;
+	height: 300px;
+}
+
+.unit {
+	position: relative;
+	background-color: gray;
+    height: 32%;
+    width: 32%;
+    margin: 1px;
+    display: inline-block;
+    float: left;
+}
+
+.selected {
+	position: relative;
+    background-color: black;
+    text-align: center;
+    font-size: 500%;
+    line-height: 100px;
+    height: 32%;
+    width: 32%;
+    margin: 1px;
+    display: inline-block;
+    float: left;
+    color: white;
+}
+
+.restart {
+	position: relative;
+	width: 200px;
+	height: 60px;
+	font-size: 150%;
+    line-height: 50px;
+    display: none;
+	margin: auto;
+	top: 40px;
+
+}
