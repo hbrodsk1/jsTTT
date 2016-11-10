@@ -48,10 +48,14 @@ var gameboard = {
 			} else if(game.currentPlayerTurn === 'O') {
 				game.currentPlayerTurn = players.firstPlayer.token;
 			}
-		},	
+		},
+
+		turnCount: 0,	
 
 		displayToken: function() {
 			$('.unit').click(function() {
+				game.turnCount++;
+
 				if(game.currentPlayerTurn === 'X' && !$(this).hasClass('selected')) {
 					$(this).addClass('selected').removeClass('unit').text("X");
 				} else if(game.currentPlayerTurn === 'O' && !$(this).hasClass('selected')) {
@@ -75,8 +79,8 @@ var gameboard = {
 		},
 
 		countAndCheck: function(arr) {
-			var counter = 0
-
+			var counter = 0;
+			
     			for (var i = 0; i < arr.length; i++) {
    					if (arr[i] === game.currentPlayerTurn) {
       				counter ++;
@@ -85,20 +89,31 @@ var gameboard = {
 
    				if(counter === 3) {
    					counter = 0;
+   					game.turnCount = 0;
    					game.message(game.currentPlayerTurn);
-   					game.restart();	
+   				} else if(game.turnCount === 9) {
+   					game.turnCount = 0;
+   					game.message("tie");
    				}
 		},
 
 		message: function(token) {
 			var victory = $("<div class='winner'></div>");
-            		victory.html(token + " Wins!").appendTo('#heading');
+			var tie = $("<div class='tie'></div>");
+
+			if(token === "tie") {
+				tie.html("It's a tie!").appendTo('#heading');
+			} else {
+            	victory.html(token + " Wins!").appendTo('#heading');
+        	}
+        	game.restart();
 		},
 
 		gameOver: function() {
 			$('.unit').remove();
 			$('.selected').remove();
 			$('.winner').remove();
+			$('.tie').remove();
 			$('.restart').hide();
 		},
 
